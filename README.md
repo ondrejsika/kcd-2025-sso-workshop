@@ -25,3 +25,32 @@ slu install-bin kubectl
 slu install-bin helm
 slu install-bin k9s
 ```
+
+Cratete a `k` alias for `kubectl`:
+
+```
+ln -s /usr/local/bin/kubectl /usr/local/bin/k
+```
+
+## Install RKE2
+
+```
+curl -sfL https://get.rke2.io | sh -
+```
+
+```
+systemctl enable rke2-server.service --now
+```
+
+Copy kubeconfig to your home directory:
+
+```
+mkdir -p ~/.kube
+cp /etc/rancher/rke2/rke2.yaml ~/.kube/config
+```
+
+Try it
+
+```
+kubectl get nodes
+```

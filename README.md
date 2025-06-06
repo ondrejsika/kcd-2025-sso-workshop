@@ -162,3 +162,23 @@ terraform init
 ```
 terraform apply
 ```
+
+## Add SSO to Kubernetes
+
+```
+mkdir -p /etc/rancher/rke2/
+cat << EOF > /etc/rancher/rke2/config.yaml
+disable:
+  - rke2-ingress-nginx
+
+kube-apiserver-arg:
+  - --oidc-issuer-url=https://sso.labX.sikademo.com/realms/kcd
+  - --oidc-client-id=kubernetes
+  - --oidc-username-claim=email
+  - --oidc-groups-claim=groups
+EOF
+```
+
+```
+systemctl restart rke2-server.service
+```

@@ -138,6 +138,9 @@ helm upgrade --install \
 
 Go to `https://sso.labX.sikademo.com`.
 
+- Username: `user`
+- Password: `bitnami`
+
 ## Install Terraform
 
 ```

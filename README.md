@@ -137,3 +137,9 @@ helm upgrade --install \
 ```
 
 Go to `https://sso.labX.sikademo.com`.
+
+## Install Terraform
+
+```
+slu install-bin terraform
+```

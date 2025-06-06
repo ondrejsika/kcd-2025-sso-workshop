@@ -182,3 +182,29 @@ EOF
 ```
 systemctl restart rke2-server.service
 ```
+
+## Install oidc-login plugin
+
+```
+slu install-bin kubelogin
+```
+
+## Create Kubeconfig with SSO
+
+```yaml
+users:
+- name: sparta-dev
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - oidc-login
+      - get-token
+      - --oidc-issuer-url=https://sso.labX.sikademo.com/realms/kcd
+      - --oidc-client-id=kubernetes
+      - --oidc-client-secret=xxx
+      command: kubectl
+      env: null
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
+```

@@ -64,3 +64,51 @@ Try it
 ```
 kubectl get nodes
 ```
+
+## Install Nginx Ingress Controller
+
+```
+helm upgrade --install \
+  ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --create-namespace \
+  --namespace ingress-nginx \
+  --set controller.service.type=ClusterIP \
+  --set controller.ingressClassResource.default=true \
+  --set controller.kind=DaemonSet \
+  --set controller.hostPort.enabled=true \
+  --set controller.metrics.enabled=true \
+  --set controller.config.use-proxy-protocol=false \
+  --wait
+```
+
+## Install CertManager and cluster issuer
+
+```
+helm upgrade --install \
+  cert-manager cert-manager \
+  --repo https://charts.jetstack.io \
+  --create-namespace \
+  --namespace cert-manager \
+  --set crds.enabled=true \
+  --wait
+```
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: lets-encrypt-slu@sikamail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-issuer-account-key
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+EOF
+```

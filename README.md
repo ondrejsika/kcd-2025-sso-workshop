@@ -1,5 +1,7 @@
 # kcd-2025-sso-workshop
 
+https://docs.google.com/document/d/1ZPqHFBwDncSKHlsI6Ganb9n8ASJoczjzhLN2jHrQBnE/edit
+
 ## Connect to the lab
 
 I've prepared lab VMs for you.

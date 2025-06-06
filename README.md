@@ -112,3 +112,16 @@ spec:
             class: nginx
 EOF
 ```
+
+## Install Local Path Provisioner
+
+```
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.31/deploy/local-path-storage.yaml
+```
+
+Set as default storage class:
+
+```
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
+

@@ -38,6 +38,16 @@ ln -s /usr/local/bin/kubectl /usr/local/bin/k
 curl -sfL https://get.rke2.io | sh -
 ```
 
+Disable the default ingress-nginx controller that comes with RKE2:
+
+```
+mkdir -p /etc/rancher/rke2/
+cat << EOF > /etc/rancher/rke2/config.yaml
+disable:
+  - rke2-ingress-nginx
+EOF
+```
+
 ```
 systemctl enable rke2-server.service --now
 ```

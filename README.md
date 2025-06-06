@@ -146,3 +146,19 @@ Go to `https://sso.labX.sikademo.com`.
 ```
 slu install-bin terraform
 ```
+
+## Apply Terraform configuration
+
+Apply terraform configuration:
+
+```
+cd terraform
+```
+
+```
+terraform init
+```
+
+```
+terraform apply
+```

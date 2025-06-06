@@ -17,3 +17,13 @@ resource "keycloak_group" "argocd-ro" {
   realm_id = keycloak_realm.kcd.id
   name     = "argocd-ro"
 }
+
+resource "keycloak_group" "kubernetes-admin" {
+  realm_id = keycloak_realm.kcd.id
+  name     = "kubernetes-admin"
+}
+
+resource "keycloak_group" "kubernetes-ro" {
+  realm_id = keycloak_realm.kcd.id
+  name     = "kubernetes-ro"
+}

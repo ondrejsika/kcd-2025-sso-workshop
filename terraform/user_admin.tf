@@ -16,6 +16,7 @@ resource "keycloak_user_groups" "admin" {
   realm_id = keycloak_realm.kcd.id
   user_id  = keycloak_user.admin.id
   group_ids = [
+    keycloak_group.kubernetes-admin.id,
     keycloak_group.argocd-admin.id,
     keycloak_group.grafana-admin.id,
   ]

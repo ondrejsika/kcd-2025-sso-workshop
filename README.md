@@ -125,3 +125,15 @@ Set as default storage class:
 kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
+## Install Keycloak
+
+```
+helm upgrade --install \
+  keycloak oci://registry-1.docker.io/bitnamicharts/keycloak \
+  --create-namespace \
+  --namespace keycloak \
+  --values keycloak.values.yaml \
+  --wait
+```
+
+Go to `https://sso.labX.sikademo.com`.
